@@ -1,0 +1,45 @@
+modLoader = "kotlinforforge"
+loaderVersion = "[5,)"
+license = "MIT"
+
+[[mods]]
+modId = "cobblemon_ditto_hms"
+version = "${version}"
+displayName = "Cobblemon Ditto HMs"
+authors = "manu"
+description = '''Brings Ditto's Pokopia HM abilities to Cobblemon. Unlock skills by having the right Pokémon in your party.'''
+
+[[dependencies.cobblemon_ditto_hms]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.cobblemon_ditto_hms]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.22)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.cobblemon_ditto_hms]]
+modId = "architectury"
+type = "required"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.cobblemon_ditto_hms]]
+modId = "kotlinforforge"
+type = "required"
+versionRange = "[5,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.cobblemon_ditto_hms]]
+modId = "cobblemon"
+type = "required"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"

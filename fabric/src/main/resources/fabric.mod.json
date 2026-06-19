@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblemon_ditto_hms",
+  "version": "${version}",
+  "name": "Cobblemon Ditto HMs",
+  "description": "Brings Ditto's Pokopia HM abilities to Cobblemon. Unlock skills by having the right Pokémon in your party.",
+  "authors": ["manu"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      { "value": "com.shier.dittohms.fabric.DittoHMsFabric", "adapter": "kotlin" }
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.5",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-language-kotlin": "*",
+    "architectury": "*",
+    "cobblemon": "*"
+  }
+}
