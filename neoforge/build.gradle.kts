@@ -21,7 +21,7 @@ configurations {
 }
 
 dependencies {
-    neoForge("net.neoforged:neoforge:$neoforgeVersion")
+    "neoForge"("net.neoforged:neoforge:$neoforgeVersion")
     implementation("thedarkcolour:kotlinforforge-neoforge:$kotlinForForgeVersion")
     modImplementation("dev.architectury:architectury-neoforge:$architecturyApiVersion")
 
