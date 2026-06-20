@@ -3,13 +3,17 @@
   "id": "cobblemon_ditto_hms",
   "version": "${version}",
   "name": "Cobblemon Ditto HMs",
-  "description": "Brings Ditto's Pokopia HM abilities to Cobblemon. Unlock skills by having the right Pokémon in your party.",
+  "description": "Ditto's Pokopia HM abilities for Cobblemon. Learn abilities by interacting with Pokémon. Config via Mod Menu.",
   "authors": ["manu"],
   "license": "MIT",
+  "icon": "cobblemon-ditto-hm-logo.png",
   "environment": "*",
   "entrypoints": {
     "main": [
       { "value": "com.shier.dittohms.fabric.DittoHMsFabric", "adapter": "kotlin" }
+    ],
+    "modmenu": [
+      { "value": "com.shier.dittohms.fabric.config.ModMenuIntegration", "adapter": "kotlin" }
     ]
   },
   "depends": {
@@ -17,7 +21,10 @@
     "minecraft": "~1.21.1",
     "java": ">=21",
     "fabric-language-kotlin": "*",
-    "architectury": "*",
-    "cobblemon": "*"
+    "cobblemon": "*",
+    "cloth-config": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
   }
 }

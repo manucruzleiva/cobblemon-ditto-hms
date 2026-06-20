@@ -6,8 +6,9 @@ license = "MIT"
 modId = "cobblemon_ditto_hms"
 version = "${version}"
 displayName = "Cobblemon Ditto HMs"
+logoFile = "cobblemon-ditto-hm-logo.png"
 authors = "manu"
-description = '''Brings Ditto's Pokopia HM abilities to Cobblemon. Unlock skills by having the right Pokémon in your party.'''
+description = '''Ditto's Pokopia HM abilities for Cobblemon. Learn abilities by interacting with Pokémon.'''
 
 [[dependencies.cobblemon_ditto_hms]]
 modId = "neoforge"
@@ -21,13 +22,6 @@ modId = "minecraft"
 type = "required"
 versionRange = "[1.21.1,1.22)"
 ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.cobblemon_ditto_hms]]
-modId = "architectury"
-type = "required"
-versionRange = "*"
-ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.cobblemon_ditto_hms]]

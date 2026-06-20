@@ -1,0 +1,61 @@
+site_name: Cobblemon Ditto HMs
+site_url: https://manucruzleiva.github.io/cobblemon-ditto-hms/
+site_description: Wiki for Cobblemon Ditto HMs — learn Ditto's Pokopia HM abilities in Minecraft.
+site_author: manu
+repo_url: https://github.com/manucruzleiva/cobblemon-ditto-hms
+repo_name: cobblemon-ditto-hms
+edit_uri: edit/master/docs/
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: pink
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: pink
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - attr_list
+  - md_in_html
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Abilities:
+    - Active HMs: abilities/active.md
+    - Toggle HMs: abilities/toggles.md
+  - HM Case: hm-case.md
+  - Configuration: config.md
+  - Commands: commands.md
+  - Changelog: changelog.md
