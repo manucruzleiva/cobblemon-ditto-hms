@@ -698,10 +698,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#default-values" class="md-nav__link">
+  <a href="#default-values-active-hms" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Default values
+        Default values — Active HMs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-values-toggle-hms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default values — Toggle HMs
       
     </span>
   </a>
@@ -791,7 +802,7 @@
 
 
 <h1 id="configuration">Configuration</h1>
-<p>Every ability has three tunable values:</p>
+<p>Every ability has these tunable values:</p>
 <table>
 <thead>
 <tr>
@@ -810,7 +821,11 @@
 </tr>
 <tr>
 <td><strong>Power</strong></td>
-<td>Ability-specific: radius, duration, damage, count, etc.</td>
+<td>Ability-specific: radius, duration, damage, count, level, etc.</td>
+</tr>
+<tr>
+<td><strong>HungerBlock</strong></td>
+<td><em>(toggles only)</em> food points blocked from your max while enabled</td>
 </tr>
 </tbody>
 </table>
@@ -821,11 +836,12 @@ Changes save automatically.</p>
 <hr />
 <h2 id="in-game-commands">In-game commands</h2>
 <p>Operator-only (<code>permission level 2</code>):</p>
-<div class="highlight"><pre><span></span><code>/dittohms config &lt;ability&gt; hunger &lt;0–20&gt;
-/dittohms config &lt;ability&gt; cooldown &lt;0–24000&gt;
-/dittohms config &lt;ability&gt; power &lt;0–512&gt;
-/dittohms config &lt;ability&gt; reset
-/dittohms config reset_all
+<div class="highlight"><pre><span></span><code>/dittohm config &lt;ability&gt; hunger &lt;0–20&gt;
+/dittohm config &lt;ability&gt; cooldown &lt;0–24000&gt;
+/dittohm config &lt;ability&gt; power &lt;0–512&gt;
+/dittohm config &lt;ability&gt; hungerblock &lt;0–20&gt;   (toggles only)
+/dittohm config &lt;ability&gt; reset
+/dittohm config reset_all
 </code></pre></div>
 <hr />
 <h2 id="config-file">Config file</h2>
@@ -836,7 +852,7 @@ Changes save automatically.</p>
 </ul>
 <p>You can edit it directly — changes take effect on next server start.</p>
 <hr />
-<h2 id="default-values">Default values</h2>
+<h2 id="default-values-active-hms">Default values — Active HMs</h2>
 <table>
 <thead>
 <tr>
@@ -881,13 +897,7 @@ Changes save automatically.</p>
 <td>Camouflage</td>
 <td>3</td>
 <td>10s</td>
-<td>30s duration</td>
-</tr>
-<tr>
-<td>Stockpile Water</td>
-<td>2</td>
-<td>3s</td>
-<td>1 block</td>
+<td>5 min duration</td>
 </tr>
 <tr>
 <td>Strength</td>
@@ -899,13 +909,13 @@ Changes save automatically.</p>
 <td>Waterfall</td>
 <td>2</td>
 <td>6s</td>
-<td>2s levitation</td>
+<td>levitation burst</td>
 </tr>
 <tr>
 <td>Magnet Rise</td>
-<td>3</td>
-<td>8s</td>
-<td>60s hover</td>
+<td>2</td>
+<td>10s</td>
+<td>5s effect (airborne only)</td>
 </tr>
 <tr>
 <td>Ember</td>
@@ -928,26 +938,20 @@ Changes save automatically.</p>
 <tr>
 <td>Fly</td>
 <td>3</td>
-<td>none</td>
-<td>60s flight</td>
+<td>1s</td>
+<td>launch + Glide (needs Glide)</td>
 </tr>
 <tr>
 <td>Rain Dance</td>
-<td>3</td>
+<td>5</td>
 <td>10s</td>
 <td>5 min rain</td>
 </tr>
 <tr>
 <td>Sunny Day</td>
-<td>3</td>
+<td>5</td>
 <td>10s</td>
 <td>5 min clear</td>
-</tr>
-<tr>
-<td>Rock Climb</td>
-<td>2</td>
-<td>5s</td>
-<td>15s effects</td>
 </tr>
 <tr>
 <td>Rest</td>
@@ -986,50 +990,88 @@ Changes save automatically.</p>
 <td>radius 10</td>
 </tr>
 <tr>
-<td>Crab Hammer</td>
+<td>Crabhammer</td>
 <td>3</td>
 <td>2s</td>
 <td>—</td>
 </tr>
 <tr>
-<td>Jump <em>(toggle)</em></td>
+<td>Revival Blessing</td>
+<td>1</td>
+<td>20 min</td>
 <td>—</td>
-<td>—</td>
-<td>Jump Boost II</td>
 </tr>
 <tr>
-<td>Surf <em>(toggle)</em></td>
-<td>—</td>
-<td>—</td>
-<td>Dolphin's Grace</td>
-</tr>
-<tr>
-<td>Glide <em>(toggle)</em></td>
-<td>—</td>
-<td>—</td>
-<td>Slow Falling</td>
-</tr>
-<tr>
-<td>Rollout <em>(toggle)</em></td>
-<td>—</td>
-<td>—</td>
-<td>Speed I</td>
-</tr>
-<tr>
-<td>Dive <em>(toggle)</em></td>
-<td>—</td>
-<td>—</td>
-<td>Water Breathing</td>
-</tr>
-<tr>
-<td>Flash <em>(toggle)</em></td>
-<td>—</td>
-<td>—</td>
-<td>Night Vision</td>
+<td>Charm</td>
+<td>2</td>
+<td>3s</td>
+<td>2 min follow</td>
 </tr>
 </tbody>
 </table>
-<p>* Rest sets hunger to 1 regardless of cost.</p>
+<p>* Rest does not require hunger.</p>
+<h2 id="default-values-toggle-hms">Default values — Toggle HMs</h2>
+<table>
+<thead>
+<tr>
+<th>Ability</th>
+<th>HungerBlock</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jump</td>
+<td>2</td>
+<td>Jump Boost level (4 = IV)</td>
+</tr>
+<tr>
+<td>Surf</td>
+<td>2</td>
+<td>Dolphin's Grace</td>
+</tr>
+<tr>
+<td>Rollout</td>
+<td>2</td>
+<td>Speed amplifier (0 = I)</td>
+</tr>
+<tr>
+<td>Dive</td>
+<td>2</td>
+<td>Water Breathing</td>
+</tr>
+<tr>
+<td>Flash</td>
+<td>2</td>
+<td>Night Vision</td>
+</tr>
+<tr>
+<td>Rock Climb</td>
+<td>2</td>
+<td>climb any wall</td>
+</tr>
+<tr>
+<td>Mean Look</td>
+<td>2</td>
+<td>detect radius 30 (hostiles flee)</td>
+</tr>
+<tr>
+<td>Harden</td>
+<td>3</td>
+<td>full diamond armour</td>
+</tr>
+<tr>
+<td>Glide</td>
+<td>2</td>
+<td>elytra-like glide</td>
+</tr>
+<tr>
+<td>Burning Bulwark</td>
+<td>4</td>
+<td>thorns damage (2)</td>
+</tr>
+</tbody>
+</table>
 
 
 

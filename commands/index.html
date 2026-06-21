@@ -722,6 +722,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Ability IDs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#active-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Active (24)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toggle-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toggle (10)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -780,36 +808,45 @@
 
 
 <h1 id="commands">Commands</h1>
+<p>The command root is <code>/dittohm</code>.</p>
 <h2 id="player-commands">Player commands</h2>
-<p>All players can use these:</p>
-<p><div class="highlight"><pre><span></span><code>/dittohms use &lt;ability&gt;
+<p><div class="highlight"><pre><span></span><code>/dittohm use &lt;ability&gt;
 </code></pre></div>
-Activates an ability you have learned (same as right-clicking its disc or using the HM Case).</p>
-<p><div class="highlight"><pre><span></span><code>/dittohms list
+Activates an ability you have learned (or toggles a passive on/off).</p>
+<p><div class="highlight"><pre><span></span><code>/dittohm list
 </code></pre></div>
-Displays all 30 abilities with your current learn status, toggle state, and configured hunger/cooldown.</p>
-<p><div class="highlight"><pre><span></span><code>/dittohms select &lt;ability&gt;
+Shows all 34 abilities with your learn status, toggle state, and configured hunger/cooldown.</p>
+<p><div class="highlight"><pre><span></span><code>/dittohm select &lt;ability&gt;
 </code></pre></div>
-Sets the active ability in the HM Case that is currently in your hotbar.</p>
+Sets the active ability in the HM Case currently in your hotbar.</p>
 <hr />
 <h2 id="operator-commands">Operator commands</h2>
-<p>Require <strong>permission level 2</strong> (operator):</p>
-<p><div class="highlight"><pre><span></span><code>/dittohms give &lt;ability&gt; &lt;player&gt;
+<p>Require <strong>permission level 2</strong>:</p>
+<p><div class="highlight"><pre><span></span><code>/dittohm give &lt;ability&gt; &lt;player&gt;
 </code></pre></div>
-Gives the HM Disc for the specified ability to a player.</p>
-<p><div class="highlight"><pre><span></span><code>/dittohms config &lt;ability&gt; hunger &lt;0–20&gt;
-/dittohms config &lt;ability&gt; cooldown &lt;0–24000&gt;
-/dittohms config &lt;ability&gt; power &lt;0–512&gt;
+Gives the HM Disc for the specified ability.</p>
+<p><div class="highlight"><pre><span></span><code>/dittohm learn_all [player]
 </code></pre></div>
-Adjusts an ability's tuning. Changes persist in <code>config/cobblemon_ditto_hms.json</code>.</p>
-<p><div class="highlight"><pre><span></span><code>/dittohms config &lt;ability&gt; reset
+Instantly learns <strong>all 34 HMs</strong> for a player (does <strong>not</strong> auto-enable toggles).</p>
+<p><div class="highlight"><pre><span></span><code>/dittohm forget &lt;ability&gt; [player]
+/dittohm forget_all [player]
 </code></pre></div>
-Resets a single ability to its default values.</p>
-<p><div class="highlight"><pre><span></span><code>/dittohms config reset_all
+Unlearns one or all HMs.</p>
+<div class="highlight"><pre><span></span><code>/dittohm config &lt;ability&gt; hunger &lt;0–20&gt;
+/dittohm config &lt;ability&gt; cooldown &lt;0–24000&gt;
+/dittohm config &lt;ability&gt; power &lt;0–512&gt;
+/dittohm config &lt;ability&gt; hungerblock &lt;0–20&gt;   (toggles only)
+/dittohm config &lt;ability&gt; reset
+/dittohm config reset_all
 </code></pre></div>
-Resets every ability to defaults.</p>
+<div class="admonition tip">
+<p class="admonition-title">After updating the mod</p>
+<p>If ability ordinals changed between versions, run <code>/dittohm config reset_all</code> and
+re-learn (<code>/dittohm forget_all</code> then <code>/dittohm learn_all</code>) to clear stale save data.</p>
+</div>
 <hr />
 <h2 id="ability-ids">Ability IDs</h2>
+<h3 id="active-24">Active (24)</h3>
 <table>
 <thead>
 <tr>
@@ -839,32 +876,12 @@ Resets every ability to defaults.</p>
 <td>Rototiller</td>
 </tr>
 <tr>
-<td><code>jump</code></td>
-<td>Jump</td>
-</tr>
-<tr>
-<td><code>surf</code></td>
-<td>Surf</td>
-</tr>
-<tr>
 <td><code>camouflage</code></td>
 <td>Camouflage</td>
 </tr>
 <tr>
-<td><code>stockpile_water</code></td>
-<td>Stockpile Water</td>
-</tr>
-<tr>
 <td><code>strength</code></td>
 <td>Strength</td>
-</tr>
-<tr>
-<td><code>rollout</code></td>
-<td>Rollout</td>
-</tr>
-<tr>
-<td><code>glide</code></td>
-<td>Glide</td>
 </tr>
 <tr>
 <td><code>waterfall</code></td>
@@ -873,14 +890,6 @@ Resets every ability to defaults.</p>
 <tr>
 <td><code>magnet_rise</code></td>
 <td>Magnet Rise</td>
-</tr>
-<tr>
-<td><code>dive</code></td>
-<td>Dive</td>
-</tr>
-<tr>
-<td><code>flash</code></td>
-<td>Flash</td>
 </tr>
 <tr>
 <td><code>ember</code></td>
@@ -905,10 +914,6 @@ Resets every ability to defaults.</p>
 <tr>
 <td><code>sunny_day</code></td>
 <td>Sunny Day</td>
-</tr>
-<tr>
-<td><code>rock_climb</code></td>
-<td>Rock Climb</td>
 </tr>
 <tr>
 <td><code>rest</code></td>
@@ -936,7 +941,66 @@ Resets every ability to defaults.</p>
 </tr>
 <tr>
 <td><code>crab_hammer</code></td>
-<td>Crab Hammer</td>
+<td>Crabhammer</td>
+</tr>
+<tr>
+<td><code>revival_blessing</code></td>
+<td>Revival Blessing</td>
+</tr>
+<tr>
+<td><code>charm</code></td>
+<td>Charm</td>
+</tr>
+</tbody>
+</table>
+<h3 id="toggle-10">Toggle (10)</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Display name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>jump</code></td>
+<td>Jump</td>
+</tr>
+<tr>
+<td><code>surf</code></td>
+<td>Surf</td>
+</tr>
+<tr>
+<td><code>rollout</code></td>
+<td>Rollout</td>
+</tr>
+<tr>
+<td><code>dive</code></td>
+<td>Dive</td>
+</tr>
+<tr>
+<td><code>flash</code></td>
+<td>Flash</td>
+</tr>
+<tr>
+<td><code>rock_climb</code></td>
+<td>Rock Climb</td>
+</tr>
+<tr>
+<td><code>mean_look</code></td>
+<td>Mean Look</td>
+</tr>
+<tr>
+<td><code>harden</code></td>
+<td>Harden</td>
+</tr>
+<tr>
+<td><code>glide</code></td>
+<td>Glide</td>
+</tr>
+<tr>
+<td><code>burning_bulwark</code></td>
+<td>Burning Bulwark</td>
 </tr>
 </tbody>
 </table>

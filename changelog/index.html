@@ -717,15 +717,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#100-2026-06-19" class="md-nav__link">
+  <a href="#110-2026-06-21" class="md-nav__link">
     <span class="md-ellipsis">
       
-        [1.0.0] - 2026-06-19
+        [1.1.0] - 2026-06-21
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="[1.0.0] - 2026-06-19">
+    <nav class="md-nav" aria-label="[1.1.0] - 2026-06-21">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -740,10 +740,93 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#abilities" class="md-nav__link">
+  <a href="#changed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Abilities
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#100-2026-06-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [1.0.0] - 2026-06-20
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[1.0.0] - 2026-06-20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core systems
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-hms-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Active HMs (24)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toggle-hms-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toggle HMs (9)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiloader
       
     </span>
   </a>
@@ -786,103 +869,70 @@
 <h1 id="changelog">Changelog</h1>
 <p>All notable changes are documented here.
 Format: <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a> + SemVer.</p>
-<h2 id="100-2026-06-19">[1.0.0] - 2026-06-19</h2>
+<h2 id="110-2026-06-21">[1.1.0] - 2026-06-21</h2>
 <h3 id="added">Added</h3>
 <ul>
-<li>15 Pokopia-inspired Ditto HM abilities, each consuming hunger on use.</li>
-<li>Abilities unlock by having the required Pokémon in your Cobblemon party.</li>
-<li><code>/dittohms use &lt;ability&gt;</code> — activate any unlocked ability.</li>
-<li><code>/dittohms list</code> — see all abilities with unlock status and cooldowns.</li>
-<li>Per-ability cooldowns to prevent spam.</li>
-<li>Multiloader: Fabric and NeoForge shipped as one Modrinth version.</li>
+<li><strong>Burning Bulwark</strong> — 10th toggle HM (learn from a <strong>Gouging Fire</strong> with a <strong>Blaze Rod</strong>).
+  Grants fire immunity and a thorns aura that scorches hostile mobs that get close. Blocks 4 hunger.</li>
+<li><strong>Per-toggle HUD icons</strong> — each enabled toggle shows its own HM status-effect icon, so it's
+  obvious which toggles are on. Underlying vanilla effects have their icons hidden.</li>
+<li><strong>Particles &amp; sounds</strong> for every HM use and toggle on/off.</li>
+<li>HM Discs now use <strong>custom TM-style disc art</strong> (gold "HM" rim + type-coloured ring) with the
+  trigger item as the centre symbol.</li>
 </ul>
-<h3 id="abilities">Abilities</h3>
-<table>
-<thead>
-<tr>
-<th>Ability</th>
-<th>Unlock Pokémon</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Water Gun</td>
-<td>Squirtle</td>
-<td>Sprays water in + pattern; extinguishes nearby fire</td>
-</tr>
-<tr>
-<td>Leafage</td>
-<td>Bulbasaur</td>
-<td>Converts dirt→grass and bone-meals crops in area</td>
-</tr>
-<tr>
-<td>Cut</td>
-<td>Scyther</td>
-<td>Chops wood and leaf blocks in a 3-wide column ahead</td>
-</tr>
-<tr>
-<td>Rock Smash</td>
-<td>Hitmonchan</td>
-<td>Haste II for 10 s</td>
-</tr>
-<tr>
-<td>Rototiller</td>
-<td>Drilbur</td>
-<td>Tills soil in 3×3 area</td>
-</tr>
-<tr>
-<td>Jump</td>
-<td>Magikarp</td>
-<td>Jump Boost III for 15 s</td>
-</tr>
-<tr>
-<td>Surf</td>
-<td>Lapras</td>
-<td>Dolphin's Grace for 30 s</td>
-</tr>
-<tr>
-<td>Camouflage</td>
-<td>Zorua</td>
-<td>Invisibility for 30 s</td>
-</tr>
-<tr>
-<td>Stockpile Water</td>
-<td>Wooper</td>
-<td>Places water sources in radius around player</td>
-</tr>
-<tr>
-<td>Strength</td>
-<td>Machoke</td>
-<td>Strength II for 15 s</td>
-</tr>
-<tr>
-<td>Rollout</td>
-<td>Graveler</td>
-<td>Speed III + Haste II for 10 s</td>
-</tr>
-<tr>
-<td>Glide</td>
-<td>Dragonite</td>
-<td>Slow Falling for 60 s</td>
-</tr>
-<tr>
-<td>Waterfall</td>
-<td>Gyarados</td>
-<td>Levitation burst to climb waterfalls</td>
-</tr>
-<tr>
-<td>Magnet Rise</td>
-<td>Magnemite</td>
-<td>Levitation I for 30 s</td>
-</tr>
-<tr>
-<td>Dive</td>
-<td>Vaporeon</td>
-<td>Water Breathing + Dolphin's Grace for 60 s</td>
-</tr>
-</tbody>
-</table>
+<h3 id="changed">Changed</h3>
+<ul>
+<li><strong>Fly</strong> no longer equips an Elytra — it requires <strong>Glide</strong> to be learned, auto-enables Glide,
+  and launches you skyward (re-use mid-air for a firework-style boost).</li>
+<li><strong>Glide</strong> now uses real Elytra gliding (no more Slow Falling).</li>
+<li><strong>Mean Look</strong> now makes hostile mobs <strong>flee with pathfinding</strong> (like creepers from a cat);
+  it never affects Pokémon, friendly mobs, or players.</li>
+<li><strong>Rock Climb</strong> reworked — look at a wall to climb, sneak to descend.</li>
+<li><strong>Cut</strong> now also fells vines.</li>
+<li><strong>Dive</strong> sink tuned so it no longer fights swimming.</li>
+<li><strong>HM Case</strong> — disc icons, drag-and-drop reordering, sections separated without spacer panes,
+  and ability descriptions shown in tooltips.</li>
+<li>Rewrote all ability descriptions to say what each HM does (no Minecraft buff names).</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>Corrected several wrong ability descriptions (Leafage, Rock Smash, Rototiller, Waterfall,
+  Dig, Defog, Revival Blessing, Strength).</li>
+<li>Fixed missing disc overlay textures for block/shield trigger items (Sunny Day, Harden, etc.).</li>
+</ul>
+<h2 id="100-2026-06-20">[1.0.0] - 2026-06-20</h2>
+<p>Initial release. <strong>33 Pokopia-inspired HM abilities</strong> (24 active + 9 toggles) for Cobblemon,
+multiloader (Fabric + NeoForge).</p>
+<h3 id="core-systems">Core systems</h3>
+<ul>
+<li><strong>HM Discs</strong> — learn an ability by right-clicking its disc; the disc remains as a reusable badge.</li>
+<li><strong>Acquisition</strong> — obtain a disc by holding an ability's trigger item and <strong>sneak + right-clicking</strong>
+  one of its unlock Pokémon. Which Pokémon/item unlocks each HM is intentionally <strong>not shown
+  in-game</strong> — it's documented only in the wiki.</li>
+<li><strong>HM Case</strong> — crafteable hotbar item; right-click uses the active HM, shift-right-click opens a
+  management GUI. Slots use each ability's trigger item as an icon; <strong>shift+click reorders</strong> HMs
+  within a section.</li>
+<li><strong>Hunger</strong> — active HMs cost hunger on use; toggles block food points from your max while enabled.</li>
+<li><strong>Per-ability config</strong> — hunger / cooldown / power / hungerBlock via <code>/dittohm config</code> and the
+  Cloth Config screen (Fabric, through Mod Menu).</li>
+</ul>
+<h3 id="active-hms-24">Active HMs (24)</h3>
+<p>Water Gun, Leafage, Cut, Rock Smash, Rototiller, Camouflage, Strength, Waterfall, Magnet Rise,
+Ember, Bullet Seed, Teleport, Fly, Rain Dance, Sunny Day, Rest, Dig, Explosion, Thunder,
+String Shot, Defog, Crabhammer, Revival Blessing, Charm.</p>
+<ul>
+<li><strong>Camouflage</strong> morphs you into the block or entity in your crosshair (5 min).</li>
+<li><strong>Magnet Rise</strong> is airborne-only and grants Levitation II + Slow Falling for 5s.</li>
+<li><strong>Charm</strong> makes a targeted mob follow you for 2 minutes.</li>
+</ul>
+<h3 id="toggle-hms-9">Toggle HMs (9)</h3>
+<p>Jump (Jump Boost IV), Surf (Dolphin's Grace), Rollout (Speed), Dive (Water Breathing + sink),
+Flash (Night Vision), Rock Climb (all blocks act as ladders), Mean Look (repel mobs),
+Harden (full diamond armour, blocks 3 hunger), Glide (elytra-like glide physics, no item).</p>
+<h3 id="commands">Commands</h3>
+<p><code>/dittohm use|list|select</code>, plus operator <code>give|config|reset_all|learn_all|forget|forget_all</code>.</p>
+<h3 id="multiloader">Multiloader</h3>
+<p>Fabric and NeoForge shipped as one Modrinth version.</p>
 
 
 

@@ -672,10 +672,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#active-hms-section-rows-02" class="md-nav__link">
+  <a href="#icons" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Active HMs section (rows 0–2)
+        Icons
       
     </span>
   </a>
@@ -683,10 +683,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#gold-separator" class="md-nav__link">
+  <a href="#active-hms-section" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Gold separator
+        Active HMs section
       
     </span>
   </a>
@@ -694,10 +694,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#toggle-hms-section-row-3" class="md-nav__link">
+  <a href="#toggle-hms-section" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Toggle HMs section (row 3)
+        Toggle HMs section
       
     </span>
   </a>
@@ -706,6 +706,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reordering-drag-drop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reordering (drag &amp; drop)
+      
+    </span>
+  </a>
   
 </li>
       
@@ -830,14 +841,14 @@
 
 
 <h1 id="hm-case">HM Case</h1>
-<p>The <strong>HM Case</strong> is a crafteable item that consolidates all 30 learned HMs into a single hotbar slot.<br />
+<p>The <strong>HM Case</strong> is a crafteable item that consolidates all 34 learned HMs into a single hotbar slot.
 It replaces the need to hold individual HM Discs and provides a management GUI.</p>
 <hr />
 <h2 id="crafting">Crafting</h2>
 <p>Shapeless recipe (9 ingredients):</p>
 <ul>
 <li>1× Chest</li>
-<li>1× Diamond  </li>
+<li>1× Diamond</li>
 <li>1× each of all 7 Apricorn colours (Red, Yellow, Green, Blue, Black, White, Pink)</li>
 </ul>
 <hr />
@@ -863,35 +874,46 @@ It replaces the need to hold individual HM Discs and provides a management GUI.<
 <p>The HM Case does <strong>not</strong> apply an item cooldown, so you can always open the GUI even when the active ability is cooling down.</p>
 <hr />
 <h2 id="hm-case-gui">HM Case GUI</h2>
-<p>The GUI is a <strong>4-row chest</strong> with two distinct sections:</p>
-<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
-│  [1] [2] [3] [4] [5] [6] [7] [8] [9]   ← Active HMs (row 0)│
-│  [10][11][12][13][14][15][16][17][18]   ← Active HMs (row 1)│
-│  [19][20][21][22][23][24][═══][═══][══] ← Active + separator│
-│  [T1][T2][T3][T4][T5][T6][   ][   ][  ]← Toggle HMs (row 3)│
-└─────────────────────────────────────────────────────────────┘
+<p>The GUI is a <strong>6-row chest</strong> with two clearly separated sections (no spacer/header panes):</p>
+<div class="highlight"><pre><span></span><code>┌──────────────────────────────────────────────────────────────┐
+│ [ 24 active HM slots — rows 0–2 ]                             │
+│ ( empty divider band — no spacer items )                     │
+│ [ 10 toggle HM slots — rows 4–5 ]                            │
+└──────────────────────────────────────────────────────────────┘
 </code></pre></div>
-<h3 id="active-hms-section-rows-02">Active HMs section (rows 0–2)</h3>
+<h3 id="icons">Icons</h3>
+<p>Every learned HM is shown as its actual <strong>HM disc</strong> — a TM-style disc (gold "HM" rim around a
+type-coloured ring: crimson for actives, blue for toggles) with the ability's trigger item as the
+centre symbol, so abilities are easy to tell apart at a glance.</p>
 <ul>
-<li><strong>Grey glass pane</strong> — ability not yet learned. Tooltip shows which Pokémon to interact with and what item to hold.</li>
-<li><strong>Coloured disc</strong> — ability learned. Click to set as the <strong>active</strong> (quick-use) ability.</li>
-<li><strong>Glowing disc</strong> ✦ — currently selected active ability.</li>
+<li><strong>Grey glass pane</strong> — ability not yet learned. The tooltip does <strong>not</strong> reveal which Pokémon
+  unlocks it — that's a wiki secret.</li>
+<li><strong>Disc icon</strong> — ability learned.</li>
+<li><strong>Glowing icon</strong> — currently active, currently ON, or currently being moved.</li>
 </ul>
-<p>Clicking an already-selected ability <strong>deselects</strong> it.</p>
-<h3 id="gold-separator">Gold separator</h3>
-<p>Visually separates active HMs from toggle HMs.</p>
-<h3 id="toggle-hms-section-row-3">Toggle HMs section (row 3)</h3>
+<h3 id="active-hms-section">Active HMs section</h3>
+<p><strong>Right-click</strong> a learned active HM to set it as the <strong>active</strong> (quick-use) ability. Right-clicking
+the already-active ability <strong>deselects</strong> it.</p>
+<h3 id="toggle-hms-section">Toggle HMs section</h3>
 <ul>
-<li><strong>Grey glass pane</strong> — not yet learned.</li>
-<li><strong>Green <code>[ON]</code></strong> — toggle is enabled.</li>
-<li><strong>Red <code>[OFF]</code></strong> — toggle is learned but disabled.</li>
+<li><strong>Green <code>✔ [ON]</code></strong> — toggle is enabled.</li>
+<li><strong>Grey <code>[OFF]</code></strong> — toggle is learned but disabled.</li>
 </ul>
-<p>Click any toggle to flip its state.</p>
+<p><strong>Right-click</strong> any toggle to flip its state.</p>
+<hr />
+<h2 id="reordering-drag-drop">Reordering (drag &amp; drop)</h2>
+<p>You can rearrange HMs within a section by dragging:</p>
+<ol>
+<li><strong>Left-click</strong> an HM — it lifts onto your cursor (it's now "moving").</li>
+<li><strong>Left-click</strong> any slot in the <strong>same</strong> section — the two swap places.</li>
+</ol>
+<p>(Click the original slot, or anywhere outside the section, to cancel.) Ordering is per-GUI-session
+(it resets to default when you reopen the Case). Active and toggle sections reorder independently.</p>
 <hr />
 <h2 id="hm-independence">HM independence</h2>
-<p>Learning an HM via the disc is <strong>completely independent</strong> of the HM Case.<br />
-The Case is purely a management and quick-access tool — abilities are tracked per-player, not per-Case item.<br />
-You can use multiple HM Cases or none at all.</p>
+<p>Learning an HM via the disc is <strong>completely independent</strong> of the HM Case.
+The Case is purely a management and quick-access tool — abilities are tracked per-player, not
+per-Case item. You can use multiple HM Cases or none at all.</p>
 
 
 

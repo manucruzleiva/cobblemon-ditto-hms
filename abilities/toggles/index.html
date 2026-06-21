@@ -619,10 +619,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#acquisition-table" class="md-nav__link">
+  <a href="#acquisition" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Acquisition table
+        Acquisition
       
     </span>
   </a>
@@ -664,17 +664,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#glide" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Glide
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#rollout" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -701,6 +690,61 @@
     <span class="md-ellipsis">
       
         Flash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rock-climb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rock Climb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mean-look" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mean Look
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#harden" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Harden
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#burning-bulwark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Burning Bulwark
       
     </span>
   </a>
@@ -857,16 +901,24 @@
 
 
 <h1 id="toggle-hms">Toggle HMs</h1>
-<p>Toggle HMs are <strong>passive abilities</strong> that stay active until you turn them off.<br />
-Enable/disable them via the <strong>HM Case GUI</strong> (Shift + right-click) or with <code>/dittohms use &lt;id&gt;</code>.</p>
+<p>Toggle HMs are <strong>passive abilities</strong> that stay active until you turn them off.
+Enable/disable them from the <strong>HM Case GUI</strong> (right-click the toggle slot) or with <code>/dittohm use &lt;id&gt;</code>.</p>
+<p>There are <strong>10 toggle HMs</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">HUD icons</p>
+<p>Every enabled toggle shows its <strong>own HM status-effect icon</strong> in your HUD (top-right), so
+it's obvious at a glance which toggles are on. The underlying vanilla effects are applied
+with their icons hidden, so you only ever see the HM icons.</p>
+</div>
 <hr />
 <h2 id="hunger-cost">Hunger cost</h2>
-<p>Each enabled toggle <strong>permanently blocks 2 hunger points</strong> from your maximum food bar.<br />
-At your effective cap you still recover health — a slow <strong>Regeneration I</strong> effect is applied automatically.</p>
+<p>Each enabled toggle <strong>blocks food points</strong> from your maximum food bar (most block 2; <strong>Harden blocks 3</strong>, <strong>Burning Bulwark blocks 4</strong>).
+At your effective cap a slow <strong>Regeneration I</strong> effect keeps you healing normally.
+The cap never drops below <strong>2</strong>.</p>
 <table>
 <thead>
 <tr>
-<th>Active toggles</th>
+<th>Food points blocked</th>
 <th>Max hunger</th>
 </tr>
 </thead>
@@ -876,108 +928,139 @@ At your effective cap you still recover health — a slow <strong>Regeneration I
 <td>20 / 20</td>
 </tr>
 <tr>
-<td>1</td>
+<td>2</td>
 <td>18 / 20</td>
 </tr>
 <tr>
-<td>2</td>
+<td>4</td>
 <td>16 / 20</td>
 </tr>
 <tr>
-<td>3</td>
+<td>6</td>
 <td>14 / 20</td>
 </tr>
 <tr>
-<td>4</td>
+<td>8</td>
 <td>12 / 20</td>
 </tr>
 <tr>
-<td>5</td>
-<td>10 / 20</td>
+<td>…</td>
+<td>…</td>
 </tr>
 <tr>
-<td>6 (all)</td>
-<td>8 / 20</td>
+<td>18+</td>
+<td>2 / 20 (floor)</td>
 </tr>
 </tbody>
 </table>
+<p>When a toggle is turned <strong>off</strong>, its effects are removed <strong>immediately</strong>.</p>
 <hr />
-<h2 id="acquisition-table">Acquisition table</h2>
+<h2 id="acquisition">Acquisition</h2>
 <table>
 <thead>
 <tr>
 <th>HM</th>
-<th>Pokémon</th>
+<th>Pokémon (any of)</th>
 <th>Trigger item</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Jump</td>
-<td>Magikarp</td>
+<td>Magikarp, Buneary, Spoink</td>
 <td>Cod</td>
 </tr>
 <tr>
 <td>Surf</td>
-<td>Lapras</td>
+<td>Lapras, Kyogre, Suicune</td>
 <td>Kelp</td>
 </tr>
 <tr>
-<td>Glide</td>
-<td>Dragonite</td>
-<td>Feather</td>
-</tr>
-<tr>
 <td>Rollout</td>
-<td>Graveler</td>
+<td>Graveler, Golem, Spheal</td>
 <td>Cobblestone</td>
 </tr>
 <tr>
 <td>Dive</td>
-<td>Vaporeon</td>
+<td>Vaporeon, Lapras, Wailord</td>
 <td>Nautilus Shell</td>
 </tr>
 <tr>
 <td>Flash</td>
-<td>Ampharos</td>
+<td>Ampharos, Jolteon, Lanturn</td>
 <td>Glowstone Dust</td>
+</tr>
+<tr>
+<td>Rock Climb</td>
+<td>Rhydon, Rhyperior, Sneasel</td>
+<td>Chain</td>
+</tr>
+<tr>
+<td>Mean Look</td>
+<td>Mimikyu, Gengar, Noctowl</td>
+<td>Ominous Bottle</td>
+</tr>
+<tr>
+<td>Harden</td>
+<td>Metapod, Kakuna, Silcoon, Cascoon</td>
+<td>Shield</td>
+</tr>
+<tr>
+<td>Glide</td>
+<td>Dragonite, Togekiss, Aerodactyl</td>
+<td>Feather</td>
+</tr>
+<tr>
+<td>Burning Bulwark</td>
+<td>Gouging Fire</td>
+<td>Blaze Rod</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="ability-details">Ability details</h2>
 <h3 id="jump">Jump</h3>
-<p><strong>Toggle blocks:</strong> 2 hunger</p>
-<p>Applies <strong>Jump Boost II</strong> continuously while active.<br />
-Approximately doubles jump height — great for traversal.</p>
-<hr />
+<p><strong>Blocks:</strong> 2 · <strong>Power:</strong> Jump Boost level (default <strong>IV</strong>)</p>
+<p>Applies continuous <strong>Jump Boost</strong>. The <code>power</code> value equals the buff level, so <code>power = 4</code> gives Jump Boost IV. Shows in your HUD.</p>
 <h3 id="surf">Surf</h3>
-<p><strong>Toggle blocks:</strong> 2 hunger</p>
-<p>While in water, applies <strong>Dolphin's Grace</strong> continuously, significantly increasing swim speed.<br />
-Has no effect on land.</p>
-<hr />
-<h3 id="glide">Glide</h3>
-<p><strong>Toggle blocks:</strong> 2 hunger</p>
-<p>Applies <strong>Slow Falling</strong> continuously.<br />
-You descend very slowly, and fall damage is eliminated.<br />
-Combine with Fly for full aerial control.</p>
-<hr />
+<p><strong>Blocks:</strong> 2</p>
+<p>Lets you <strong>swim much faster</strong> through water while the toggle is on.</p>
 <h3 id="rollout">Rollout</h3>
-<p><strong>Toggle blocks:</strong> 2 hunger</p>
-<p>Applies <strong>Speed I</strong> continuously — always a slight movement boost.</p>
-<hr />
+<p><strong>Blocks:</strong> 2 · <strong>Power:</strong> speed amount</p>
+<p>Increases your <strong>movement speed</strong> while active.</p>
 <h3 id="dive">Dive</h3>
-<p><strong>Toggle blocks:</strong> 2 hunger</p>
-<p>Two permanent effects while active:</p>
+<p><strong>Blocks:</strong> 2</p>
 <ul>
-<li><strong>Water Breathing</strong> — never run out of air</li>
-<li><strong>Natural sinking</strong> — a gentle downward force is applied when underwater, countering the vanilla "bobbing up" behaviour</li>
+<li><strong>Breathe underwater</strong> — never run out of air.</li>
+<li>You gently <strong>sink</strong> when you stop swimming, so you can stay down and explore. The sink only
+  kicks in while you're idle and drifting down — swimming in any direction (including up) stops
+  it, so it never fights your swimming.</li>
 </ul>
-<hr />
 <h3 id="flash">Flash</h3>
-<p><strong>Toggle blocks:</strong> 2 hunger</p>
-<p>Grants <strong>Night Vision</strong> permanently (infinite duration, ambient effect — shows <code>**:**</code> with no countdown timer).<br />
-Toggle off to remove it instantly.</p>
+<p><strong>Blocks:</strong> 2</p>
+<p>Lets you <strong>see clearly in the dark</strong>, even in caves and at night. Toggle off to remove instantly.</p>
+<h3 id="rock-climb">Rock Climb</h3>
+<p><strong>Blocks:</strong> 2</p>
+<p>Lets you <strong>climb any wall you're facing</strong> — while airborne, look at a wall to climb up; hold
+<strong>sneak</strong> to climb down. No vanilla movement buffs are applied.</p>
+<h3 id="mean-look">Mean Look</h3>
+<p><strong>Blocks:</strong> 2 · <strong>Power:</strong> detect radius (default 30)</p>
+<p>Nearby <strong>hostile mobs flee from you</strong>, running away with real pathfinding — exactly like creepers
+running from a cat (they even sprint when you get close). It <strong>never</strong> affects Pokémon, friendly
+mobs, or other players.</p>
+<h3 id="harden">Harden</h3>
+<p><strong>Blocks:</strong> 3</p>
+<p>Hardens your body to <strong>greatly reduce the damage you take</strong> (+20 armour, +8 toughness applied via
+attributes, plus damage resistance). Costs more hunger than other toggles.</p>
+<h3 id="glide">Glide</h3>
+<p><strong>Blocks:</strong> 2</p>
+<p>Lets you <strong>glide like an Elytra without needing the item</strong>. While airborne the real Elytra gliding
+kicks in — dive to gain speed, level off to glide far. (Fly auto-enables this.)</p>
+<h3 id="burning-bulwark">Burning Bulwark</h3>
+<p><strong>Blocks:</strong> 4 · <strong>Power:</strong> thorns damage (default 2)</p>
+<p>Makes you <strong>immune to fire</strong> and <strong>scorches hostile mobs that get too close</strong> — any hostile within
+~1.6 blocks is set alight and takes thorns damage twice a second. Pokémon and friendly mobs are
+never harmed.</p>
 
 
 

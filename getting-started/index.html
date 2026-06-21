@@ -812,7 +812,7 @@
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can get HM Discs as an operator with <code>/dittohms give &lt;player&gt; &lt;ability_id&gt;</code> without needing to interact with a Pokémon.</p>
+<p>Operators can get HM Discs directly with <code>/dittohm give &lt;ability_id&gt; &lt;player&gt;</code> without interacting with a Pokémon.</p>
 </div>
 <hr />
 <h2 id="learning-an-ability">Learning an ability</h2>
@@ -894,21 +894,22 @@
 </table>
 <p>In the GUI you can:</p>
 <ul>
-<li>See all 30 HMs (grey = not yet learned, coloured = learned)</li>
-<li>Click an <strong>Active HM</strong> to set it as the quick-use ability</li>
-<li>Click a <strong>Toggle HM</strong> to enable or disable it</li>
+<li>See all 34 HMs (grey glass = not yet learned, disc icon = learned)</li>
+<li><strong>Right-click</strong> an <strong>Active HM</strong> to set it as the quick-use ability</li>
+<li><strong>Right-click</strong> a <strong>Toggle HM</strong> to enable or disable it</li>
+<li><strong>Left-click + drag</strong> an HM onto another slot in the same section to reorder them</li>
 </ul>
 <p>See the <a href="../hm-case/">HM Case guide</a> for full details.</p>
 <hr />
 <h2 id="the-hunger-system">The hunger system</h2>
 <ul>
 <li><strong>Active HMs</strong> cost hunger on use (configurable per ability).</li>
-<li><strong>Toggle HMs</strong> block your maximum hunger while enabled — each active toggle reduces your max food bar by <strong>2 points</strong>. You still regenerate health at the cap via a slow Regeneration effect.</li>
+<li><strong>Toggle HMs</strong> block your maximum hunger while enabled — most reduce your max food bar by <strong>2 points</strong> (Harden by <strong>3</strong>, Burning Bulwark by <strong>4</strong>). You still regenerate health at the cap via a slow Regeneration effect. The cap never drops below 2.</li>
 </ul>
 <table>
 <thead>
 <tr>
-<th>Active toggles</th>
+<th>Food points blocked</th>
 <th>Max hunger</th>
 </tr>
 </thead>
@@ -918,28 +919,20 @@
 <td>20 / 20</td>
 </tr>
 <tr>
-<td>1</td>
+<td>2</td>
 <td>18 / 20</td>
 </tr>
 <tr>
-<td>2</td>
+<td>4</td>
 <td>16 / 20</td>
 </tr>
 <tr>
-<td>3</td>
+<td>6</td>
 <td>14 / 20</td>
 </tr>
 <tr>
-<td>4</td>
+<td>8</td>
 <td>12 / 20</td>
-</tr>
-<tr>
-<td>5</td>
-<td>10 / 20</td>
-</tr>
-<tr>
-<td>6</td>
-<td>8 / 20</td>
 </tr>
 </tbody>
 </table>
