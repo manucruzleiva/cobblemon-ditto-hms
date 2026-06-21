@@ -10,7 +10,7 @@ Each ability is locked behind a **Pokémon interaction**. To unlock one:
 4. The trigger item is consumed and the Pokémon gives you the **HM Disc**.
 
 !!! tip
-    You can get HM Discs as an operator with `/dittohms give <player> <ability_id>` without needing to interact with a Pokémon.
+    Operators can get HM Discs directly with `/dittohm give <ability_id> <player>` without interacting with a Pokémon.
 
 ---
 
@@ -53,9 +53,10 @@ The **HM Case** lets you manage all learned abilities from a single hotbar slot.
 
 In the GUI you can:
 
-- See all 30 HMs (grey = not yet learned, coloured = learned)
-- Click an **Active HM** to set it as the quick-use ability
-- Click a **Toggle HM** to enable or disable it
+- See all 34 HMs (grey glass = not yet learned, disc icon = learned)
+- **Right-click** an **Active HM** to set it as the quick-use ability
+- **Right-click** a **Toggle HM** to enable or disable it
+- **Left-click + drag** an HM onto another slot in the same section to reorder them
 
 See the [HM Case guide](hm-case.md) for full details.
 
@@ -64,14 +65,12 @@ See the [HM Case guide](hm-case.md) for full details.
 ## The hunger system
 
 - **Active HMs** cost hunger on use (configurable per ability).
-- **Toggle HMs** block your maximum hunger while enabled — each active toggle reduces your max food bar by **2 points**. You still regenerate health at the cap via a slow Regeneration effect.
+- **Toggle HMs** block your maximum hunger while enabled — most reduce your max food bar by **2 points** (Harden by **3**, Burning Bulwark by **4**). You still regenerate health at the cap via a slow Regeneration effect. The cap never drops below 2.
 
-| Active toggles | Max hunger |
+| Food points blocked | Max hunger |
 |---|---|
 | 0 | 20 / 20 |
-| 1 | 18 / 20 |
-| 2 | 16 / 20 |
-| 3 | 14 / 20 |
-| 4 | 12 / 20 |
-| 5 | 10 / 20 |
-| 6 | 8 / 20 |
+| 2 | 18 / 20 |
+| 4 | 16 / 20 |
+| 6 | 14 / 20 |
+| 8 | 12 / 20 |

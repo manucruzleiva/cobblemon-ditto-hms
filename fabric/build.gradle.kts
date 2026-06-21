@@ -1,8 +1,10 @@
 import java.io.File
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
 
 plugins {
     id("com.gradleup.shadow") version "8.3.5"
     id("com.modrinth.minotaur") version "2.8.7"
+    id("net.darkhax.curseforgegradle") version "1.1.26"
 }
 
 architectury {
@@ -16,6 +18,8 @@ val fabricKotlinVersion: String by project
 val architecturyApiVersion: String by project
 val minecraftVersion: String by project
 val modVersion: String by project
+val clothConfigVersion: String by project
+val modMenuVersion: String by project
 
 val common: Configuration by configurations.creating
 val shadowBundle: Configuration by configurations.creating
@@ -26,11 +30,19 @@ configurations {
     getByName("developmentFabric").extendsFrom(common)
 }
 
+repositories {
+    maven { url = uri("https://maven.shedaniel.me/") }
+    maven { url = uri("https://maven.terraformersmc.com/releases") }
+}
+
 dependencies {
     modImplementation("net.fabricmc:fabric-loader:$loaderVersion")
     modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricVersion")
     modImplementation("net.fabricmc:fabric-language-kotlin:$fabricKotlinVersion")
-    modImplementation("dev.architectury:architectury-fabric:$architecturyApiVersion")
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:$clothConfigVersion") {
+        exclude(group = "net.fabricmc.fabric-api")
+    }
+    modImplementation("com.terraformersmc:modmenu:$modMenuVersion")
 
     common(project(":common", configuration = "namedElements")) { isTransitive = false }
     shadowBundle(project(":common", configuration = "transformProductionFabric"))
@@ -44,6 +56,8 @@ tasks {
     shadowJar {
         configurations = listOf(shadowBundle)
         archiveClassifier.set("dev-shadow")
+        // Shadow plugin doesn't auto-pick up Kotlin output in Loom — include explicitly
+        from(project.sourceSets["main"].output)
     }
     remapJar {
         inputFile.set(shadowJar.flatMap { it.archiveFile })
@@ -83,6 +97,36 @@ tasks.named("modrinth") {
     dependsOn(":neoforge:remapJar")
 }
 tasks.named("build") { finalizedBy("modrinth") }
+
+// ── CurseForge (project 1583189) — uploads both jars as one release ──────────────
+// Requires CURSEFORGE_TOKEN in the environment. Game-version / modloader IDs are
+// resolved by name against the CurseForge API at publish time.
+val curseForgeProjectId = "1583189"
+val publishCurseForge by tasks.registering(TaskPublishCurseForge::class) {
+    apiToken = System.getenv("CURSEFORGE_TOKEN") ?: ""
+
+    val fabricFile = upload(curseForgeProjectId, tasks.named("remapJar"))
+    fabricFile.releaseType = "release"
+    fabricFile.changelogType = "markdown"
+    fabricFile.changelog = latestChangelog()
+    fabricFile.displayName = "Cobblemon Ditto HMs $modVersion (Fabric)"
+    fabricFile.addGameVersion(minecraftVersion)
+    fabricFile.addModLoader("Fabric")
+    fabricFile.addRequirement("cobblemon")
+
+    val neoFile = upload(curseForgeProjectId, project(":neoforge").tasks.named("remapJar"))
+    neoFile.releaseType = "release"
+    neoFile.changelogType = "markdown"
+    neoFile.changelog = latestChangelog()
+    neoFile.displayName = "Cobblemon Ditto HMs $modVersion (NeoForge)"
+    neoFile.addGameVersion(minecraftVersion)
+    neoFile.addModLoader("NeoForge")
+    neoFile.addRequirement("cobblemon")
+
+    dependsOn("remapJar", ":neoforge:remapJar")
+    onlyIf { !System.getenv("CURSEFORGE_TOKEN").isNullOrEmpty() }
+}
+tasks.named("build") { finalizedBy(publishCurseForge) }
 
 val testEnvDir: String? by project
 if (testEnvDir != null) {

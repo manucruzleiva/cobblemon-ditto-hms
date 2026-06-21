@@ -2,24 +2,28 @@ package com.shier.dittohms.ability.handlers
 
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.phys.BlockHitResult
+import net.minecraft.world.phys.HitResult
 
 object RototillerHandler {
     fun execute(player: ServerPlayer): Boolean {
         val level = player.serverLevel()
-        val center = player.blockPosition().below()
+        val hit   = player.pick(4.0, 1.0f, false)
 
-        for (dx in -1..1) for (dz in -1..1) {
-            val pos = center.offset(dx, 0, dz)
-            val state = level.getBlockState(pos)
-            val aboveState = level.getBlockState(pos.above())
-
-            val tillable = state.`is`(Blocks.DIRT) || state.`is`(Blocks.GRASS_BLOCK) ||
-                state.`is`(Blocks.COARSE_DIRT) || state.`is`(Blocks.DIRT_PATH)
-
-            if (tillable && aboveState.isAir) {
-                level.setBlock(pos, Blocks.FARMLAND.defaultBlockState(), 3)
-            }
+        val target = when {
+            hit.type == HitResult.Type.BLOCK -> (hit as BlockHitResult).blockPos
+            else -> player.blockPosition().below() // fallback: block below player
         }
-        return true
+
+        val state = level.getBlockState(target)
+        val above = level.getBlockState(target.above())
+        val tillable = state.`is`(Blocks.DIRT) || state.`is`(Blocks.GRASS_BLOCK) ||
+            state.`is`(Blocks.COARSE_DIRT) || state.`is`(Blocks.DIRT_PATH)
+
+        if (tillable && above.isAir) {
+            level.setBlock(target, Blocks.FARMLAND.defaultBlockState(), 3)
+            return true
+        }
+        return false
     }
 }

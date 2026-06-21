@@ -10,6 +10,7 @@ architectury {
 val neoforgeVersion: String by project
 val kotlinForForgeVersion: String by project
 val architecturyApiVersion: String by project
+val clothConfigVersion: String by project
 
 val common: Configuration by configurations.creating
 val shadowBundle: Configuration by configurations.creating
@@ -20,10 +21,16 @@ configurations {
     getByName("developmentNeoForge").extendsFrom(common)
 }
 
+repositories {
+    maven { url = uri("https://maven.shedaniel.me/") }
+}
+
 dependencies {
     "neoForge"("net.neoforged:neoforge:$neoforgeVersion")
     implementation("thedarkcolour:kotlinforforge-neoforge:$kotlinForForgeVersion")
-    modImplementation("dev.architectury:architectury-neoforge:$architecturyApiVersion")
+    modImplementation("me.shedaniel.cloth:cloth-config-neoforge:$clothConfigVersion") {
+        exclude(group = "net.neoforged")
+    }
 
     common(project(":common", configuration = "namedElements")) { isTransitive = false }
     shadowBundle(project(":common", configuration = "transformProductionNeoForge")) { isTransitive = false }

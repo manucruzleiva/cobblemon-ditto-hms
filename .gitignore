@@ -18,3 +18,10 @@ Thumbs.db
 
 # Secrets
 local.properties
+.env
+
+# Kotlin compiler artifacts
+.kotlin/
+
+# Nested community-bot repo (tracked separately)
+cobblemon-ditto-hm-community/

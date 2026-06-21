@@ -1,13 +1,13 @@
 modLoader = "kotlinforforge"
 loaderVersion = "[5,)"
-license = "MIT"
+license = "If you make money, I make money."
 
 [[mods]]
 modId = "cobblemon_ditto_hms"
 version = "${version}"
-displayName = "Cobblemon Ditto HMs"
+displayName = "Cobblemon Ditto HM"
 logoFile = "cobblemon-ditto-hm-logo.png"
-authors = "manu"
+authors = "shiero"
 description = '''Ditto's Pokopia HM abilities for Cobblemon. Learn abilities by interacting with Pokémon.'''
 
 [[dependencies.cobblemon_ditto_hms]]
