@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "cobblemon_ditto_hms",
   "version": "${version}",
-  "name": "Cobblemon Ditto HMs",
+  "name": "Cobblemon Ditto HM",
   "description": "Ditto's Pokopia HM abilities for Cobblemon. Learn abilities by interacting with Pokémon. Config via Mod Menu.",
-  "authors": ["manu"],
-  "license": "MIT",
+  "authors": ["shiero"],
+  "license": "If you make money, I make money.",
   "icon": "cobblemon-ditto-hm-logo.png",
   "environment": "*",
   "entrypoints": {

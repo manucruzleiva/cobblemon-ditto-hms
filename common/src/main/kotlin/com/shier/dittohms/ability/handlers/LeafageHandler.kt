@@ -1,33 +1,39 @@
 package com.shier.dittohms.ability.handlers
 
+import com.shier.dittohms.ability.DittoAbility
+import com.shier.dittohms.config.HMsConfig
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.level.block.BonemealableBlock
-import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.CropBlock
 
 object LeafageHandler {
     fun execute(player: ServerPlayer): Boolean {
-        val level = player.serverLevel()
-        val center = player.blockPosition()
+        val level  = player.serverLevel()
+        val origin = player.blockPosition()
+        val radius = HMsConfig.get(DittoAbility.LEAFAGE).power
+        var applied = 0
 
-        for (dx in -2..2) for (dz in -2..2) {
-            val ground = center.offset(dx, -1, dz)
-            val groundState = level.getBlockState(ground)
+        for (x in -radius..radius) for (z in -radius..radius) {
+            for (dy in 2 downTo -1) {
+                val pos   = origin.offset(x, dy, z)
+                val state = level.getBlockState(pos)
+                val block = state.block
 
-            if (groundState.`is`(Blocks.DIRT) || groundState.`is`(Blocks.COARSE_DIRT) ||
-                groundState.`is`(Blocks.ROOTED_DIRT)
-            ) {
-                level.setBlock(ground, Blocks.GRASS_BLOCK.defaultBlockState(), 3)
-            }
-
-            val plantPos = center.offset(dx, 0, dz)
-            val plantState = level.getBlockState(plantPos)
-            val block = plantState.block
-            if (block is BonemealableBlock &&
-                block.isValidBonemealTarget(level, plantPos, plantState)
-            ) {
-                block.performBonemeal(level, level.random, plantPos, plantState)
+                // Only fully bonemeal actual crops (CropBlock subclasses).
+                // Grass, saplings, flowers etc. are intentionally excluded.
+                if (block is CropBlock && block.isValidBonemealTarget(level, pos, state)) {
+                    var iterations = 0
+                    while (iterations < 20) {
+                        val current = level.getBlockState(pos)
+                        if (!block.isValidBonemealTarget(level, pos, current)) break
+                        block.performBonemeal(level, level.random, pos, current)
+                        iterations++
+                    }
+                    if (iterations > 0) applied++
+                    break
+                }
             }
         }
-        return true
+        return applied > 0
     }
 }

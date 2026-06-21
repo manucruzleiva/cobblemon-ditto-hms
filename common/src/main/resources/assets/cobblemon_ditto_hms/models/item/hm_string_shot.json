@@ -1,0 +1,2 @@
+{ "parent": "minecraft:item/generated", "textures": { "layer0": "cobblemon_ditto_hms:item/hm_disc_active", "layer1": "minecraft:item/string" } }
+

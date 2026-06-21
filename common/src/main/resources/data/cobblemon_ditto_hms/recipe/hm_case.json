@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:chest" },
+    { "item": "minecraft:diamond" },
+    { "item": "cobblemon:red_apricorn" },
+    { "item": "cobblemon:yellow_apricorn" },
+    { "item": "cobblemon:green_apricorn" },
+    { "item": "cobblemon:blue_apricorn" },
+    { "item": "cobblemon:black_apricorn" },
+    { "item": "cobblemon:white_apricorn" },
+    { "item": "cobblemon:pink_apricorn" }
+  ],
+  "result": {
+    "id": "cobblemon_ditto_hms:hm_case",
+    "count": 1
+  }
+}

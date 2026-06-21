@@ -1,55 +1,64 @@
 # Commands
 
+The command root is `/dittohm`.
+
 ## Player commands
 
-All players can use these:
+```
+/dittohm use <ability>
+```
+Activates an ability you have learned (or toggles a passive on/off).
 
 ```
-/dittohms use <ability>
+/dittohm list
 ```
-Activates an ability you have learned (same as right-clicking its disc or using the HM Case).
+Shows all 34 abilities with your learn status, toggle state, and configured hunger/cooldown.
 
 ```
-/dittohms list
+/dittohm select <ability>
 ```
-Displays all 30 abilities with your current learn status, toggle state, and configured hunger/cooldown.
-
-```
-/dittohms select <ability>
-```
-Sets the active ability in the HM Case that is currently in your hotbar.
+Sets the active ability in the HM Case currently in your hotbar.
 
 ---
 
 ## Operator commands
 
-Require **permission level 2** (operator):
+Require **permission level 2**:
 
 ```
-/dittohms give <ability> <player>
+/dittohm give <ability> <player>
 ```
-Gives the HM Disc for the specified ability to a player.
+Gives the HM Disc for the specified ability.
 
 ```
-/dittohms config <ability> hunger <0–20>
-/dittohms config <ability> cooldown <0–24000>
-/dittohms config <ability> power <0–512>
+/dittohm learn_all [player]
 ```
-Adjusts an ability's tuning. Changes persist in `config/cobblemon_ditto_hms.json`.
+Instantly learns **all 34 HMs** for a player (does **not** auto-enable toggles).
 
 ```
-/dittohms config <ability> reset
+/dittohm forget <ability> [player]
+/dittohm forget_all [player]
 ```
-Resets a single ability to its default values.
+Unlearns one or all HMs.
 
 ```
-/dittohms config reset_all
+/dittohm config <ability> hunger <0–20>
+/dittohm config <ability> cooldown <0–24000>
+/dittohm config <ability> power <0–512>
+/dittohm config <ability> hungerblock <0–20>   (toggles only)
+/dittohm config <ability> reset
+/dittohm config reset_all
 ```
-Resets every ability to defaults.
+
+!!! tip "After updating the mod"
+    If ability ordinals changed between versions, run `/dittohm config reset_all` and
+    re-learn (`/dittohm forget_all` then `/dittohm learn_all`) to clear stale save data.
 
 ---
 
 ## Ability IDs
+
+### Active (24)
 
 | ID | Display name |
 |---|---|
@@ -58,28 +67,37 @@ Resets every ability to defaults.
 | `cut` | Cut |
 | `rock_smash` | Rock Smash |
 | `rototiller` | Rototiller |
-| `jump` | Jump |
-| `surf` | Surf |
 | `camouflage` | Camouflage |
-| `stockpile_water` | Stockpile Water |
 | `strength` | Strength |
-| `rollout` | Rollout |
-| `glide` | Glide |
 | `waterfall` | Waterfall |
 | `magnet_rise` | Magnet Rise |
-| `dive` | Dive |
-| `flash` | Flash |
 | `ember` | Ember |
 | `bullet_seed` | Bullet Seed |
 | `teleport` | Teleport |
 | `fly` | Fly |
 | `rain_dance` | Rain Dance |
 | `sunny_day` | Sunny Day |
-| `rock_climb` | Rock Climb |
 | `rest` | Rest |
 | `dig` | Dig |
 | `explosion` | Explosion |
 | `thunder` | Thunder |
 | `string_shot` | String Shot |
 | `defog` | Defog |
-| `crab_hammer` | Crab Hammer |
+| `crab_hammer` | Crabhammer |
+| `revival_blessing` | Revival Blessing |
+| `charm` | Charm |
+
+### Toggle (10)
+
+| ID | Display name |
+|---|---|
+| `jump` | Jump |
+| `surf` | Surf |
+| `rollout` | Rollout |
+| `dive` | Dive |
+| `flash` | Flash |
+| `rock_climb` | Rock Climb |
+| `mean_look` | Mean Look |
+| `harden` | Harden |
+| `glide` | Glide |
+| `burning_bulwark` | Burning Bulwark |
