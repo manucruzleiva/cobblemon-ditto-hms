@@ -218,14 +218,18 @@ Tokens live in `.env` (gitignored). Both publishers are in the `fabric` module a
 jars (Fabric + NeoForge) as one release; each is gated `onlyIf` its token env-var is present, so
 normal dev builds never publish. **Bump `modVersion` first** (re-uploading a version fails).
 
-- **Modrinth** (Minotaur, slug `cobblemon-ditto-hms`, id `JNfSyMuQ`): set `MODRINTH_TOKEN`, run
-  `build` (or `:fabric:modrinth`). Dry-run: `:fabric:modrinth -PmodrinthDebug`. First publish of a
-  new project is a **draft** until you click *Submit for review* (Modrinth moderates it).
+- **Modrinth** (custom `publishModrinth` task, slug `cobblemon-ditto-hms`, id `JNfSyMuQ`): set
+  `MODRINTH_TOKEN`, run `build` (or `:fabric:publishModrinth`). It POSTs **one version per loader**
+  (`<ver>+fabric`, `<ver>+neoforge`) to the API — Modrinth Content Rules §5.7 forbid bundling both
+  loaders' jars on one version as "additional files" (it gets rejected). §5.1 also requires
+  accurate environment metadata (`client_side`/`server_side` = `required` here). First publish of a
+  new project is a **draft** until *Submit for review* (Modrinth moderates it).
+  > We dropped Minotaur because it only uploads a single combined version; the custom task does the
+  > per-loader split. The Modrinth project itself was created via the API (`POST /v2/project`).
 - **CurseForge** (CurseForgeGradle, project id `1583189`): set `CURSEFORGE_TOKEN`, run `build` (or
-  `:fabric:publishCurseForge`). Game-version/modloader IDs resolve by name at publish time.
-
-The Modrinth project was created via the API (`POST /v2/project`); CurseForge projects **cannot**
-be created via API (manual creation + staff approval on the website).
+  `:fabric:publishCurseForge`). Uploads the two jars as **separate files** (one per loader);
+  game-version/modloader IDs resolve by name at publish time. CurseForge projects **cannot** be
+  created via API — manual creation + staff approval on the website first.
 
 ## Versioning
 
