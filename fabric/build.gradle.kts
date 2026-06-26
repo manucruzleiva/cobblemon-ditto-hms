@@ -1,9 +1,13 @@
 import java.io.File
+import java.io.ByteArrayOutputStream
+import java.net.URI
+import java.net.http.HttpClient
+import java.net.http.HttpRequest
+import java.net.http.HttpResponse
 import net.darkhax.curseforgegradle.TaskPublishCurseForge
 
 plugins {
     id("com.gradleup.shadow") version "8.3.5"
-    id("com.modrinth.minotaur") version "2.8.7"
     id("net.darkhax.curseforgegradle") version "1.1.26"
 }
 
@@ -74,34 +78,70 @@ fun latestChangelog(): String {
     return if (body.isNullOrEmpty()) "See CHANGELOG.md" else body
 }
 
-modrinth {
-    token.set(System.getenv("MODRINTH_TOKEN"))
-    projectId.set("cobblemon-ditto-hms")
-    versionNumber.set(modVersion)
-    versionName.set("Cobblemon Ditto HMs $modVersion")
-    versionType.set("release")
-    uploadFile.set(tasks.named("remapJar"))
-    additionalFiles.add(project(":neoforge").tasks.named("remapJar"))
-    gameVersions.add(minecraftVersion)
-    loaders.addAll("fabric", "neoforge")
-    changelog.set(latestChangelog())
-    failSilently.set(true)
-    debugMode.set(project.hasProperty("modrinthDebug"))
-    dependencies {
-        required.project("cobblemon")
+// ── Modrinth — uploads ONE version per loader. Modrinth Content Rules §5.7 require a
+// single primary file per version (one per MC+loader); bundling both loaders' jars on one
+// version as "additional files" gets the project rejected. So we POST two versions (one
+// Fabric, one NeoForge) to the API directly. Requires MODRINTH_TOKEN in the environment.
+fun jsonEscape(s: String): String = buildString {
+    for (c in s) when (c) {
+        '\\' -> append("\\\\")
+        '"'  -> append("\\\"")
+        '\n' -> append("\\n")
+        '\r' -> append("\\r")
+        '\t' -> append("\\t")
+        else -> append(c)
     }
 }
 
-tasks.named("modrinth") {
-    onlyIf { System.getenv("MODRINTH_TOKEN") != null }
-    dependsOn(":neoforge:remapJar")
+fun uploadModrinthVersion(token: String, jar: File, loader: String, versionNumber: String, displayName: String, changelog: String, mcVersion: String) {
+    val projectId   = "JNfSyMuQ"   // Cobblemon Ditto HMs
+    val cobblemonId = "MdwFAVRL"   // required dependency
+    val data = "{\"name\":\"${jsonEscape(displayName)}\",\"version_number\":\"${jsonEscape(versionNumber)}\"," +
+        "\"changelog\":\"${jsonEscape(changelog)}\"," +
+        "\"dependencies\":[{\"project_id\":\"$cobblemonId\",\"dependency_type\":\"required\"}]," +
+        "\"game_versions\":[\"$mcVersion\"],\"version_type\":\"release\",\"loaders\":[\"$loader\"]," +
+        "\"featured\":true,\"project_id\":\"$projectId\",\"file_parts\":[\"file\"],\"primary_file\":\"file\"}"
+    val boundary = "DittoHMsBoundary${System.currentTimeMillis()}"
+    val out = ByteArrayOutputStream()
+    fun w(s: String) = out.write(s.toByteArray(Charsets.UTF_8))
+    w("--$boundary\r\nContent-Disposition: form-data; name=\"data\"\r\nContent-Type: application/json\r\n\r\n")
+    w(data); w("\r\n")
+    w("--$boundary\r\nContent-Disposition: form-data; name=\"file\"; filename=\"${jar.name}\"\r\nContent-Type: application/java-archive\r\n\r\n")
+    out.write(jar.readBytes()); w("\r\n")
+    w("--$boundary--\r\n")
+    val req = HttpRequest.newBuilder()
+        .uri(URI.create("https://api.modrinth.com/v2/version"))
+        .header("Authorization", token)
+        .header("User-Agent", "manucruzleiva/cobblemon-ditto-hms (gradle publish)")
+        .header("Content-Type", "multipart/form-data; boundary=$boundary")
+        .POST(HttpRequest.BodyPublishers.ofByteArray(out.toByteArray()))
+        .build()
+    val resp = HttpClient.newHttpClient().send(req, HttpResponse.BodyHandlers.ofString())
+    if (resp.statusCode() !in 200..299)
+        throw GradleException("Modrinth upload failed for $loader ($versionNumber): HTTP ${resp.statusCode()} ${resp.body()}")
+    println("Modrinth: uploaded $versionNumber [$loader]")
 }
-tasks.named("build") { finalizedBy("modrinth") }
+
+val publishModrinth by tasks.registering {
+    group = "publishing"
+    description = "Upload one Modrinth version per loader (Fabric + NeoForge)."
+    dependsOn("remapJar", ":neoforge:remapJar")
+    onlyIf { !System.getenv("MODRINTH_TOKEN").isNullOrEmpty() }
+    doLast {
+        val token     = System.getenv("MODRINTH_TOKEN")!!
+        val changelog = latestChangelog()
+        val fabricJar = tasks.named("remapJar").get().outputs.files.singleFile
+        val neoJar    = project(":neoforge").tasks.named("remapJar").get().outputs.files.singleFile
+        uploadModrinthVersion(token, fabricJar, "fabric",   "$modVersion+fabric",   "$modVersion (Fabric)",   changelog, minecraftVersion)
+        uploadModrinthVersion(token, neoJar,    "neoforge", "$modVersion+neoforge", "$modVersion (NeoForge)", changelog, minecraftVersion)
+    }
+}
+tasks.named("build") { finalizedBy(publishModrinth) }
 
 // ── CurseForge (project 1583189) — uploads both jars as one release ──────────────
 // Requires CURSEFORGE_TOKEN in the environment. Game-version / modloader IDs are
 // resolved by name against the CurseForge API at publish time.
-val curseForgeProjectId = "1583189"
+val curseForgeProjectId = "1587850"
 val publishCurseForge by tasks.registering(TaskPublishCurseForge::class) {
     apiToken = System.getenv("CURSEFORGE_TOKEN") ?: ""
 
