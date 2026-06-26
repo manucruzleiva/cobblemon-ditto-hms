@@ -226,7 +226,8 @@ normal dev builds never publish. **Bump `modVersion` first** (re-uploading a ver
   new project is a **draft** until *Submit for review* (Modrinth moderates it).
   > We dropped Minotaur because it only uploads a single combined version; the custom task does the
   > per-loader split. The Modrinth project itself was created via the API (`POST /v2/project`).
-- **CurseForge** (CurseForgeGradle, project id `1583189`): set `CURSEFORGE_TOKEN`, run `build` (or
+- **CurseForge** (CurseForgeGradle, project id `1587850` — must be a **Mod** project, not a
+  Modpack, or `.jar` uploads fail "verify archive"): set `CURSEFORGE_TOKEN`, run `build` (or
   `:fabric:publishCurseForge`). Uploads the two jars as **separate files** (one per loader);
   game-version/modloader IDs resolve by name at publish time. CurseForge projects **cannot** be
   created via API — manual creation + staff approval on the website first.

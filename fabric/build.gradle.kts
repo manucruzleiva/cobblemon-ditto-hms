@@ -141,7 +141,7 @@ tasks.named("build") { finalizedBy(publishModrinth) }
 // ── CurseForge (project 1583189) — uploads both jars as one release ──────────────
 // Requires CURSEFORGE_TOKEN in the environment. Game-version / modloader IDs are
 // resolved by name against the CurseForge API at publish time.
-val curseForgeProjectId = "1583189"
+val curseForgeProjectId = "1587850"
 val publishCurseForge by tasks.registering(TaskPublishCurseForge::class) {
     apiToken = System.getenv("CURSEFORGE_TOKEN") ?: ""
 
